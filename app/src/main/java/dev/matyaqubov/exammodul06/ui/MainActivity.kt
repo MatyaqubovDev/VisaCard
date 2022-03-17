@@ -81,21 +81,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateList() {
         val repository=CardRepository(application)
-        RetrofitHttp.cardService.createCard(repository.getCardsList().last()).enqueue(object :Callback<Card>{
-            override fun onResponse(call: Call<Card>, response: Response<Card>) {
-                getAllcards()
-            }
+        if (isInternetAvailable()){
+            RetrofitHttp.cardService.createCard(repository.getCardsList().last()).enqueue(object :Callback<Card>{
+                override fun onResponse(call: Call<Card>, response: Response<Card>) {
+                    getAllcards()
+                }
 
-            override fun onFailure(call: Call<Card>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "check internet", Toast.LENGTH_SHORT).show()
-            }
+                override fun onFailure(call: Call<Card>, t: Throwable) {
 
-        })
+                }
+
+            })
+        } else{
+            getAllcardsFromLocal()
+        }
     }
 
     private fun getAllcardsFromLocal() {
         val repository=CardRepository(application)
+        cards.clear()
         cards.addAll(repository.getCardsList())
+        adapter.notifyDataSetChanged()
     }
 
     private fun getAllcards() {
