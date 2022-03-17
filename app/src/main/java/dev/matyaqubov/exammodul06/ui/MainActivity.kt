@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateList() {
         val repository=CardRepository(application)
         if (isInternetAvailable()){
-            RetrofitHttp.cardService.createCard(repository.getCardsList().last()).enqueue(object :Callback<Card>{
+            RetrofitHttp.cardService.createCard(repository.getCardsList().first()).enqueue(object :Callback<Card>{
                 override fun onResponse(call: Call<Card>, response: Response<Card>) {
                     getAllcards()
                 }
