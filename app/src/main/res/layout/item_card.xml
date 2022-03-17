@@ -61,14 +61,15 @@
                     android:gravity="center"
                     android:text="4276 5842 1111 8014"
                     android:textColor="@color/white"
-                    android:textSize="33sp"
+                    android:textSize="30sp"
+                    android:padding="5dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:layout_width="match_parent"
