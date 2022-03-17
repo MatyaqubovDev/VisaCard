@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ExamModul06">
         <activity
             android:name=".ui.AddCardActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

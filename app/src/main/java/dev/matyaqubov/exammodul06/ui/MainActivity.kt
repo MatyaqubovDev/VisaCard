@@ -126,6 +126,35 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun uploadList() {
+        val repository=CardRepository(application)
+        val items=repository.getCardsList()
+        for (item in items) {
+            for (card in cards) {
+                if (card.card_number==item.card_number){
+                    item.is_have=true
+                    break
+                }
+
+            }
+
+            if (!item.is_have) createCard(item)
+        }
+    }
+
+    private fun createCard(item: Card) {
+        RetrofitHttp.cardService.createCard(item).enqueue(object :Callback<Card>{
+            override fun onResponse(call: Call<Card>, response: Response<Card>) {
+                getAllcards()
+            }
+
+            override fun onFailure(call: Call<Card>, t: Throwable) {
+
+            }
+
+        })
+    }
+
 
     private fun isInternetAvailable(): Boolean {
         val manager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
